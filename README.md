@@ -4,7 +4,7 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 ## Assignments:
 - [x] Avstånd till kanten
 - [x] Boff
-- [ ] Dekompression
+- [x] Dekompression
 - [ ] Demografi
 - [ ] Enigma
 - [x] Fältet
