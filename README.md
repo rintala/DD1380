@@ -6,7 +6,7 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 - [x] Boff
 - [x] Dekompression
 - [x] Demografi
-- [ ] Enigma
+- [x] Enigma
 - [x] Fältet
 - [ ] Kvadranter
 - [x] Summera tal
