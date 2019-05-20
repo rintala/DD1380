@@ -5,7 +5,7 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 - [x] Avstånd till kanten
 - [x] Boff
 - [x] Dekompression
-- [ ] Demografi
+- [x] Demografi
 - [ ] Enigma
 - [x] Fältet
 - [ ] Kvadranter
