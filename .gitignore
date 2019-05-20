@@ -2,6 +2,6 @@
 .DS_Store
 
 # own
-.iml
-.idea
-.class
+*.iml
+*.idea
+*.class
