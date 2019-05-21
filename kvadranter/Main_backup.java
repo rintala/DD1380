@@ -55,12 +55,11 @@ public class Main {
 
         String[][] boardCreated = createReferenceBoard(noOfFolds, lenOfSide);
         //String[][] boardCreated = createBoard(noOfFolds, lenOfSide);
-        
+    
         System.out.println("..... OUTPUT .....");
         print2D(boardCreated);
-        String positionRetrieved = findPos(boardCreated, startPos, rightMove, upMove);
-
-        return positionRetrieved;
+    
+        return startPos;
     }   
 
     // function to create ref board for keeping track of naming convention
@@ -85,107 +84,74 @@ public class Main {
             System.out.println("FOLD LEVEL i"+i + " len of fold: "+lenSideOfFold);
                 
 
-            //int factorIncDec = (int)((double)refBoard.length/(double)lenSideOfFold);   
             int factorIncDec = (int)((double)refBoard.length/(double)lenSideOfFold);   
-            
             if(factorIncDec == 1){
-                System.out.println("WE have reached the last fold.. DO something.." + factorIncDec);
-
-                for(int j=refBoard.length-1;j>0; j-=2){
-                    
-                    for(int k=0;k<refBoard.length-1; k+=2){
-                        System.out.println("J: "+j + ", "+k);
-                        // jump with bigger relative steps
-                        // however still iterate over all pos within that outer box
-                        // thus, adjust number of times we iterate within this
-                        //System.out.println("JK"+j+","+k);
-                        refBoard[j][k] += "1"; 
-                        refBoard[j][k+1] += "2";
-                        refBoard[j-1][k] += "3";
-                        refBoard[j-1][k+1] += "4";
-                    }
-                }
+                System.out.println("WE have reached the last fold.. DO something..");
             } else{
                 System.out.println("This is is still a fold that contains several levels..");
                 // handle range of pos that should be given same value
                 // create help matrix with dimensions of factorIndDec
                 
                 //String[][] helpMatrix = new String[factorIncDec][factorIncDec];
-                for(int j=refBoard.length-1;j>factorIncDec; j-=factorIncDec*2){
+                for(int j=refBoard.length-1;j>factorIncDec; j-=factorIncDec){
                     System.out.println("J"+j);
-                    for(int k=0;k<refBoard.length-factorIncDec; k+=factorIncDec*2){
+                    for(int k=0;k<refBoard.length-factorIncDec; k+=factorIncDec){
 
                         // jump with bigger relative steps
                         // however still iterate over all pos within that outer box
                         // thus, adjust number of times we iterate within this
-                        // TODO: fix this iteration of ALL psitions that belong to ex. 1,1,1,1
-
                         System.out.println("JK"+j+","+k);
-                        System.out.println("factorIncDec: "+factorIncDec);
-                        System.out.println("lenSideOfFold: "+lenSideOfFold);
                         for(int b=0;b<factorIncDec;b++){
                             System.out.println("b"+b);
+
+                            refBoard[j][k+b] += "1.";
+                            refBoard[j-b][k] += "1.";
+                            refBoard[j-b][k+b] += "1.";
+
+                            refBoard[j][k+factorIncDec+b] += "2.";
+                            refBoard[j-b][k+factorIncDec] += "2.";
+                            refBoard[j-b][k+factorIncDec+b] += "2.";
                             
-                            for(int c=0;c<factorIncDec;c++){
-                                //horizontal
-                                System.out.println("Jk 3: "+  (j-factorIncDec-c) + ", "+(k+b));
-                                refBoard[j-c][k+b] += "1.";
-                                refBoard[j-c][k+factorIncDec+b] += "2.";
-                                refBoard[j-factorIncDec-c][k+b] += "3.";
-                                refBoard[j-factorIncDec-c][k+factorIncDec+b] += "4.";
-                            }
-                            
+                            refBoard[j-factorIncDec][k+b] += "3.";
+                            refBoard[j-factorIncDec-b][k] += "3.";
+                            refBoard[j-factorIncDec-b][k+b] += "3.";
+
+                            refBoard[j-factorIncDec][k+factorIncDec+b] += "4.";
+                            refBoard[j-factorIncDec-b][k+factorIncDec] += "4.";
+                            refBoard[j-factorIncDec-b][k+factorIncDec+b] += "4.";
                         }
                         
                     }
                 }
             }
 
-            //System.out.println("refBoard.length/lenSideOfFold: "+factorIncDec);
-        
+            System.out.println("refBoard.length/lenSideOfFold: "+factorIncDec);
+            
         }
 
         return refBoard;
     }
 
-    public String findPos(String[][] board, String searchedFor, int rightMove, int upMove){
+    public String[][] createBoard(int noOfFolds, int lenOfSide){
+        System.out.println("creating board..");
+        System.out.println("no of folds: "+noOfFolds);
+        System.out.println("side length: "+lenOfSide);
 
-        // dummy values
-        int startxCoord = 0;
-        int startyCoord = 0;
-
-        boolean startIsFound = false;
-        System.out.println("SEARCH FOR: "+searchedFor);
-        // traverse map
-        for(int i = 0; i<board.length;i++){
-            for(int j = 0; j<board.length;j++){
-                if(board[i][j].equals(searchedFor)){
-                    startxCoord = i;
-                    startyCoord = j;
-                    startIsFound = true;
-                    System.out.println("FOUNDi t!!" + i + ", "+j);
-                }
+        // creating a board with the right dimensions
+        String[][] board = new String[lenOfSide][lenOfSide];
+        
+        // fill board - traverse from bottom up, start in left corner, move in quadrants
+        for(int i = lenOfSide-1; i>0;i-=2){
+            for(int j=0;j<=lenOfSide-2;j+=2){
+                System.out.println("ijx:"+i+","+j);
+                board[i][j] = "s1";
+                board[i][j+1] = "s2"    ;
+                board[i-1][j] = "s3";
+                board[i-1][j+1] = "s4";
             }
         }
 
-        if(startIsFound){
-            int newxCoord = startxCoord-upMove;
-            int newyCoord = startyCoord+rightMove;
-
-            System.out.println("NEW COORRD: "+newxCoord + "," +newyCoord);
-            if(newxCoord>=0 && newxCoord<board.length && newyCoord>=0 && newyCoord<board.length){
-                String newContent = board[newxCoord][newyCoord];
-
-                return newContent;
-
-            } else{
-                return "outside";
-            }
-        }
-        else{
-            return "outside";
-        }
-
+        return board;
     }
 
     public static void main(String[] args){
@@ -198,8 +164,8 @@ public class Main {
             //String filePath = "";
 
             // field matrix from input file
-            String finalPosition = theMain.readFile(filePath);
-            System.out.println("FINAL POS: "+finalPosition);
+            String cryptoAndClearText = theMain.readFile(filePath);
+            
         }   
         catch(IOException e){
             System.out.println("Error occurred when reading file");
