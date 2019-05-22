@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File; 
 
-public class Main_kattis {
+public class Main_kattis_new_algo {
 
     public static void print2D(String matrix[][]){
         int counter = 0;
@@ -45,21 +45,51 @@ public class Main_kattis {
         int rightMove = Integer.valueOf(rightUpMoves[0]);
         int upMove = Integer.valueOf(rightUpMoves[1]);
 
+        // create lists for base and alternating - to use in creating board
+        int[][] factorLists = constructFactorLists(lenOfSide);
+
+        for(int i=0; i<2; i++){
+            System.out.println("next list: ");
+            for(int j=0; j<lenOfSide; j++){
+                System.out.println(factorLists[i][j]);
+            }
+        }
         // create the board and retrieve the final position according to movements
         String[][] boardCreated = createBoard(noOfFolds, lenOfSide);
-    
-        //print2D(boardCreated);
+        print2D(boardCreated);
         String positionRetrieved = findPos(boardCreated, startPos, rightMove, upMove);
 
         return positionRetrieved;
     }   
 
+    public int[][] constructFactorLists(int lenOfSide){
+        // create one list with even jumps (baseList) and one with odd/even (alternatingList))
+        // - alternate between these as req
+
+        int[][] factorLists = new int[2][lenOfSide];
+
+        factorLists[0][0] = 0;
+        factorLists[1][0] = 0;
+
+        for(int i = 1; i<lenOfSide; i++){
+            int toAdd;
+
+            if(i%2 == 0){
+                toAdd = 3;
+            } else{
+                toAdd = 1;
+            }
+            factorLists[0][i] = factorLists[0][i-1]+toAdd;
+            factorLists[1][i] = i;
+        }
+        return factorLists;
+    }
     // function to create ref board for keeping track of naming convention
     public String[][] createBoard(int noOfFolds, int lenOfSide){
         
         // init a ref board with the right dimensions
         String[][] refBoard = new String[lenOfSide][lenOfSide];
-        
+    
         for(int i=0;i<lenOfSide;i++){
             for(int j=0;j<lenOfSide;j++){
                 refBoard[i][j] = "";
@@ -67,8 +97,8 @@ public class Main_kattis {
         }
 
         // iterate over the board as many times as the number of folds
-        
         for(int i=1; i<=noOfFolds;i++){
+            System.out.println("NO OF FOLDS: "+i);
             // at each level we basically just add on to existing string
             int noOfTotPosForFoldI = (int) Math.pow(4, i);
             int lenSideOfFold = (int) Math.sqrt(noOfTotPosForFoldI); 
@@ -89,20 +119,20 @@ public class Main_kattis {
                 // handle range of pos that should be given same value
                 // create help matrix with dimensions of factorIndDec
                 for(int j=lenOfSide-1;j>factorIncDec; j-=factorIncDec*2){
-                    //System.out.println("....");
-                    for(int k=0;k<lenOfSide-factorIncDec; k+=factorIncDec*2){
-                        for(int b=0;b<factorIncDec;b++){       
-                            //System.out.println("K, B , sum(K,B): "+k+", "+b + ", "+(k+b));                                                                         
-                            for(int c=0;c<factorIncDec;c++){
-                                refBoard[j-c][k+b] += "1.";
-                                refBoard[j-c][k+factorIncDec+b] += "2.";
-                                refBoard[j-factorIncDec-c][k+b] += "3.";
-                                refBoard[j-factorIncDec-c][k+factorIncDec+b] += "4.";
-                            }
+                    System.out.println("....");
+                    for(int f=0; f<lenSideOfFold; f++){ 
+                        int factorToAdd = 1;
+                        //System.out.println("K, B , sum(K,B): "+k+", "+b + ", "+(k+b));                                                                         
+                        for(int c=0;c<factorIncDec;c++){
+                            refBoard[j-c][factorToAdd] += "1.";
+                            refBoard[j-c][factorIncDec+factorToAdd] += "2.";
+                            refBoard[j-factorIncDec-c][factorToAdd] += "3.";
+                            refBoard[j-factorIncDec-c][factorIncDec+factorToAdd] += "4.";
                         }
                     }
                 }
             }
+    
         }
 
         return refBoard;
@@ -128,7 +158,6 @@ public class Main_kattis {
         // traverse map to find starting pos
         int[] startCoords = findStart(board, searchedFor);
 
-        // assuming startpos exists
         int newxCoord = startCoords[0]-upMove;
         int newyCoord = startCoords[1]+rightMove;
 
@@ -137,11 +166,10 @@ public class Main_kattis {
         } else{
             return "outside";
         }
-
     }
 
     public static void main(String[] args){
-        Main_kattis theMain = new Main_kattis();
+        Main_kattis_new_algo theMain = new Main_kattis_new_algo();
 
         try{
             long startTime = System.currentTimeMillis();
