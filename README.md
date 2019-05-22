@@ -1,4 +1,4 @@
-# DD1380
+#DD1380
 Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 
 ## Assignments:
@@ -13,3 +13,4 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 
 ### Others:
 - [x] Lägg ihop ord
+- [x] Almanackan
