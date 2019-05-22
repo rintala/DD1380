@@ -8,7 +8,7 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 - [x] Demografi
 - [x] Enigma
 - [x] Fältet
-- [ ] Kvadranter
+- [x] Kvadranter
 - [x] Summera tal
 
 ### Others:
