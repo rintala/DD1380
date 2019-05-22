@@ -36,7 +36,7 @@ public class Main {
     }
 
     public String readFile(String filePath) throws IOException {
-        System.out.println("readfile initialized..");
+        //System.out.println("readfile initialized..");
     
         File file = new File(filePath); 
         Scanner scan = new Scanner(file);   
@@ -56,8 +56,8 @@ public class Main {
         String[][] boardCreated = createReferenceBoard(noOfFolds, lenOfSide);
         //String[][] boardCreated = createBoard(noOfFolds, lenOfSide);
         
-        System.out.println("..... OUTPUT .....");
-        print2D(boardCreated);
+        //System.out.println("..... OUTPUT .....");
+        //print2D(boardCreated);
         String positionRetrieved = findPos(boardCreated, startPos, rightMove, upMove);
 
         return positionRetrieved;
@@ -65,9 +65,9 @@ public class Main {
 
     // function to create ref board for keeping track of naming convention
     public String[][] createReferenceBoard(int noOfFolds, int lenOfSide){
-        System.out.println("creating board..");
-        System.out.println("no of folds: "+noOfFolds);
-        System.out.println("side length: "+lenOfSide);
+        //System.out.println("creating board..");
+        //System.out.println("no of folds: "+noOfFolds);
+        //System.out.println("side length: "+lenOfSide);
 
         // init a ref board with the right dimensions
         String[][] refBoard = new String[lenOfSide][lenOfSide];
@@ -82,19 +82,19 @@ public class Main {
             // at each level we basically just add on to existing string
             int noOfTotPosForFoldI = (int) Math.pow(4, i);
             int lenSideOfFold = (int)Math.sqrt(noOfTotPosForFoldI);
-            System.out.println("FOLD LEVEL i"+i + " len of fold: "+lenSideOfFold);
+            //System.out.println("FOLD LEVEL i"+i + " len of fold: "+lenSideOfFold);
                 
 
             //int factorIncDec = (int)((double)refBoard.length/(double)lenSideOfFold);   
             int factorIncDec = (int)((double)refBoard.length/(double)lenSideOfFold);   
             
             if(factorIncDec == 1){
-                System.out.println("WE have reached the last fold.. DO something.." + factorIncDec);
+                //System.out.println("WE have reached the last fold.. DO something.." + factorIncDec);
 
                 for(int j=refBoard.length-1;j>0; j-=2){
                     
                     for(int k=0;k<refBoard.length-1; k+=2){
-                        System.out.println("J: "+j + ", "+k);
+                        //System.out.println("J: "+j + ", "+k);
                         // jump with bigger relative steps
                         // however still iterate over all pos within that outer box
                         // thus, adjust number of times we iterate within this
@@ -106,13 +106,13 @@ public class Main {
                     }
                 }
             } else{
-                System.out.println("This is is still a fold that contains several levels..");
+                //System.out.println("This is is still a fold that contains several levels..");
                 // handle range of pos that should be given same value
                 // create help matrix with dimensions of factorIndDec
                 
                 //String[][] helpMatrix = new String[factorIncDec][factorIncDec];
                 for(int j=refBoard.length-1;j>factorIncDec; j-=factorIncDec*2){
-                    System.out.println("J"+j);
+                    //System.out.println("J"+j);
                     for(int k=0;k<refBoard.length-factorIncDec; k+=factorIncDec*2){
 
                         // jump with bigger relative steps
@@ -120,15 +120,15 @@ public class Main {
                         // thus, adjust number of times we iterate within this
                         // TODO: fix this iteration of ALL psitions that belong to ex. 1,1,1,1
 
-                        System.out.println("JK"+j+","+k);
-                        System.out.println("factorIncDec: "+factorIncDec);
-                        System.out.println("lenSideOfFold: "+lenSideOfFold);
+                        //System.out.println("JK"+j+","+k);
+                        //System.out.println("factorIncDec: "+factorIncDec);
+                        //System.out.println("lenSideOfFold: "+lenSideOfFold);
                         for(int b=0;b<factorIncDec;b++){
-                            System.out.println("b"+b);
+                            //System.out.println("b"+b);
                             
                             for(int c=0;c<factorIncDec;c++){
                                 //horizontal
-                                System.out.println("Jk 3: "+  (j-factorIncDec-c) + ", "+(k+b));
+                                //System.out.println("Jk 3: "+  (j-factorIncDec-c) + ", "+(k+b));
                                 refBoard[j-c][k+b] += "1.";
                                 refBoard[j-c][k+factorIncDec+b] += "2.";
                                 refBoard[j-factorIncDec-c][k+b] += "3.";
@@ -155,7 +155,7 @@ public class Main {
         int startyCoord = 0;
 
         boolean startIsFound = false;
-        System.out.println("SEARCH FOR: "+searchedFor);
+        //System.out.println("SEARCH FOR: "+searchedFor);
         // traverse map
         for(int i = 0; i<board.length;i++){
             for(int j = 0; j<board.length;j++){
@@ -163,7 +163,7 @@ public class Main {
                     startxCoord = i;
                     startyCoord = j;
                     startIsFound = true;
-                    System.out.println("FOUNDi t!!" + i + ", "+j);
+                    //System.out.println("FOUNDi t!!" + i + ", "+j);
                 }
             }
         }
@@ -172,7 +172,7 @@ public class Main {
             int newxCoord = startxCoord-upMove;
             int newyCoord = startyCoord+rightMove;
 
-            System.out.println("NEW COORRD: "+newxCoord + "," +newyCoord);
+            //System.out.println("NEW COORRD: "+newxCoord + "," +newyCoord);
             if(newxCoord>=0 && newxCoord<board.length && newyCoord>=0 && newyCoord<board.length){
                 String newContent = board[newxCoord][newyCoord];
 
@@ -193,6 +193,7 @@ public class Main {
         Main theMain = new Main();
 
         try{
+            long startTime = System.currentTimeMillis();
             //System.out.println("filepath: "+args[0]);
             String filePath = args[0];
             //String filePath = "";
@@ -200,6 +201,9 @@ public class Main {
             // field matrix from input file
             String finalPosition = theMain.readFile(filePath);
             System.out.println("FINAL POS: "+finalPosition);
+            long endTime = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+            System.out.println(totalTime);
         }   
         catch(IOException e){
             System.out.println("Error occurred when reading file");
