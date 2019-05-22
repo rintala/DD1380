@@ -11,5 +11,5 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 - [ ] Kvadranter
 - [x] Summera tal
 
-# Others:
+### Others:
 - [x] Lägg ihop ord
