@@ -1,7 +1,11 @@
-# DD1380
-Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
+# kattis-solutions
 
-## Assignments:
+## Go
+
+- [x] R2
+
+## Assignments - DD1380:
+
 - [x] Avstånd till kanten
 - [x] Boff
 - [x] Dekompression
@@ -12,6 +16,7 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 - [x] Summera tal
 
 ### Others:
+
 - [x] Lägg ihop ord
 - [x] Almanackan
 - [x] Quality-Adjusted Life-Year
