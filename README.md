@@ -4,7 +4,9 @@
 
 - [x] R2
 
-## Assignments - DD1380:
+## Java
+
+### DD1380:
 
 - [x] Avstånd till kanten
 - [x] Boff
