@@ -3,6 +3,7 @@
 ## Go
 
 - [x] R2
+- [x] Mixed Fractions
 
 ## Java
 
