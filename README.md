@@ -14,3 +14,4 @@ Javaprogrammering för Pythonprogrammerare – DD1380/javap19.
 ### Others:
 - [x] Lägg ihop ord
 - [x] Almanackan
+- [x] Quality-Adjusted Life-Year
