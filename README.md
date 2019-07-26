@@ -4,6 +4,7 @@
 
 - [x] R2
 - [x] Mixed Fractions
+- [x] Encoded Message
 
 ## Java
 
