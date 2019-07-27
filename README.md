@@ -8,6 +8,7 @@
 - [x] Railroad
 - [x] Job Expenses
 - [x] Dice Cup
+- [x] [Stacking Cups](https://open.kattis.com/problems/cups)
 
 ## Java
 
