@@ -6,6 +6,7 @@
 - [x] Mixed Fractions
 - [x] Encoded Message
 - [x] Railroad
+- [x] Job Expenses
 
 ## Java
 
