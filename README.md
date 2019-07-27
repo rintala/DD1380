@@ -7,6 +7,7 @@
 - [x] Encoded Message
 - [x] Railroad
 - [x] Job Expenses
+- [x] Dice Cup
 
 ## Java
 
