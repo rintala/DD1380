@@ -9,6 +9,7 @@
 - [x] Job Expenses
 - [x] Dice Cup
 - [x] [Stacking Cups](https://open.kattis.com/problems/cups)
+- [x] [The Easiest Problem Is This One](https://open.kattis.com/problems/easiest)
 
 ## Java
 
