@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func decryptPoem(encryptedPoem string){
+func decryptPoemFast(encryptedPoem string){
 	squareSide := int(math.Sqrt(float64(len(encryptedPoem))))
 	var decryptedPoem strings.Builder
 
@@ -32,6 +32,6 @@ func main() {
             break
 		}
 		
-		decryptPoem(poems[i])
+		decryptPoemFast(poems[i])
 	}
 }

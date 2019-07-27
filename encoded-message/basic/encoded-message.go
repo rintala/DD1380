@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -35,7 +34,7 @@ func rotateMatrix(matrix [][]string) [][]string{
 func decryptPoem(poem string){
 	squareSide := int(math.Sqrt(float64(len(poem))))
 	squareMatrix := make([][]string, squareSide)
-	
+
 	for i:=0;i<squareSide; i++ {
 		squareMatrix[i] = make([]string, squareSide)
 		rowVector := make([]string, squareSide)
