@@ -4,8 +4,7 @@ import (
 	"fmt"
 )
 
-func readEntries(n int) ([]int, error){
-	
+func readEntries(n int) ([]int, error) {
 	in := make([]int, n)
 	for i := range in {
 		_, err := fmt.Scanf("%d", &in[i])
@@ -18,14 +17,15 @@ func readEntries(n int) ([]int, error){
 
 func calculateExpenses(entries []int) int {
 	totExpenses := 0
-	for _, entry := range entries{
-		if(entry<0){
-			totExpenses+= Abs(entry)
+	for _, entry := range entries {
+		if entry < 0 {
+			totExpenses += Abs(entry)
 		}
 	}
 	return totExpenses
 }
 
+// Abs - Util function for absolute value of int
 func Abs(x int) int {
 	if x < 0 {
 		return -x
@@ -36,7 +36,7 @@ func Abs(x int) int {
 func main() {
 	var numberOfEntries int
 	fmt.Scanf("%d", &numberOfEntries)
-	
+
 	entries, _ := readEntries(numberOfEntries)
 	fmt.Println(calculateExpenses(entries))
 }

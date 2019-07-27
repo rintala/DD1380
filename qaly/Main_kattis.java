@@ -3,12 +3,7 @@
  * Created by jonathanrintala on 2019-07-26.
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.*;
-import java.io.File;
 
 public class Main_kattis {
 
