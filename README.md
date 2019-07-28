@@ -11,6 +11,7 @@
 - [x] [Stacking Cups](https://open.kattis.com/problems/cups)
 - [x] [The Easiest Problem Is This One](https://open.kattis.com/problems/easiest)
 - [x] [Bela](https://open.kattis.com/problems/bela)
+- [x] [Janitor Troubles](https://open.kattis.com/problems/janitortroubles)
 
 ## Java
 
