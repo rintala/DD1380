@@ -12,6 +12,7 @@
 - [x] [The Easiest Problem Is This One](https://open.kattis.com/problems/easiest)
 - [x] [Bela](https://open.kattis.com/problems/bela)
 - [x] [Janitor Troubles](https://open.kattis.com/problems/janitortroubles)
+- [x] [Akcija](https://open.kattis.com/problems/akcija)
 
 ## Java
 

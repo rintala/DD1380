@@ -1,13 +1,30 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
 )
 
-func main() {
+var scanner = bufio.NewScanner(os.Stdin)
+
+func toInt(buf []byte) (n int) {
+	for _, v := range buf {
+		n = n*10 + int(v-'0')
+	}
+	return
+}
+
+func readBytes() (int, int, int, int) {
 	var a, b, c, d int
-	fmt.Scanf("%d %d %d %d", &a, &b, &c, &d)
+	scanner.Scan()
+	fmt.Sscanf(scanner.Text(), "%d %d %d %d", &a, &b, &c, &d)
+
+	return a, b, c, d
+}
+func main() {
+	a, b, c, d := readBytes()
 	semiParam := float64(a+b+c+d) / 2
 
 	// Bretschneider’s formula for max area
